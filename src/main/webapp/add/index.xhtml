@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+  <title>Add Address</title>
+</h:head>
+
+<h:body>
+  <h1>Add Address</h1>
+  <h:form>
+    <p>
+      <h:outputLabel>First Name:</h:outputLabel>
+      <h:inputText value="#{addAddressFormBean.address.firstName}"/>
+    </p>
+    <p>
+      <h:outputLabel>Last Name:</h:outputLabel>
+      <h:inputText value="#{addAddressFormBean.address.lastName}"/>
+    </p>
+    <p>
+      <h:outputLabel>Street Address:</h:outputLabel>
+      <h:inputText value="#{addAddressFormBean.address.streetAddress}"/>
+    </p>
+    <p>
+      <h:outputLabel>City:</h:outputLabel>
+      <h:inputText value="#{addAddressFormBean.address.city}"/>
+    </p>
+    <p>
+      <h:outputLabel>State:</h:outputLabel>
+      <h:inputText value="#{addAddressFormBean.address.state}"/>
+    </p>
+    <p>
+      <h:outputLabel>Zip Code:</h:outputLabel>
+      <h:inputText value="#{addAddressFormBean.address.zipCode}"/>
+    </p>
+    <p>
+      <h:commandButton action="#{addAddressFormBean.save}"
+          value="Save"/>
+    </p>    
+  </h:form>
+</h:body>
+
+</html>

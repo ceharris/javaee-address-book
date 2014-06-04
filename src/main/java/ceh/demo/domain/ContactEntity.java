@@ -1,13 +1,39 @@
 package ceh.demo.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
+
+import org.apache.commons.lang.Validate;
+
 import ceh.demo.Contact;
 import ceh.demo.MailingAddress;
 
+@Entity
+@Table(name = "contact")
 public class ContactEntity implements Contact {
 
+  @Id
+  @GeneratedValue
+  private Long id;
+  
+  @Version
+  private Long version;
+  
+  @Column(name = "first_name", length = 30)
   private String firstName;
+  
+  @Column(name = "last_name", length = 30)
   private String lastName;
-  private MailingAddress mailingAddress = new MailingAddressEntity();
+  
+  @Embedded
+  private MailingAddressEntity mailingAddress = new MailingAddressEntity();
+  
+  @Column
   private String phone;
 
   @Override
@@ -37,7 +63,8 @@ public class ContactEntity implements Contact {
 
   @Override
   public void setMailingAddress(MailingAddress mailingAddress) {
-    this.mailingAddress = mailingAddress;
+    Validate.isTrue(mailingAddress instanceof MailingAddressEntity);
+    this.mailingAddress = (MailingAddressEntity) mailingAddress;
   }
 
   @Override

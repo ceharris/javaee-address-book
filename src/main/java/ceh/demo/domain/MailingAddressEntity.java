@@ -1,12 +1,20 @@
 package ceh.demo.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 import ceh.demo.MailingAddress;
 
+@Embeddable
 public class MailingAddressEntity implements MailingAddress {
 
+  @Column(name = "street_address")
   private String streetAddress;
+  @Column
   private String city;
+  @Column
   private String state;
+  @Column(name = "zip_code")
   private String zipCode;
 
   @Override

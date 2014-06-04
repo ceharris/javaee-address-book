@@ -10,6 +10,10 @@ public class AddressDetailWrapper implements AddressDetail {
     this.contact = contact;
   }
 
+  public Contact getDelegate() {
+    return contact;
+  }
+  
   public String getFirstName() {
     return contact.getFirstName();
   }

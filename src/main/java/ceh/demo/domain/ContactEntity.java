@@ -1,10 +1,13 @@
 package ceh.demo.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -30,7 +33,9 @@ public class ContactEntity implements Contact {
   @Column(name = "last_name", length = 30)
   private String lastName;
   
-  @Embedded
+  @OneToOne(optional = false, cascade = { CascadeType.PERSIST },
+      fetch = FetchType.LAZY)
+  @JoinColumn(name = "mailing_address_id")
   private MailingAddressEntity mailingAddress = new MailingAddressEntity();
   
   @Column

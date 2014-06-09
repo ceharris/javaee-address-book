@@ -1,13 +1,25 @@
 package ceh.demo.domain;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 import ceh.demo.MailingAddress;
 
-@Embeddable
+@Entity
+@Table(name = "mailing_address")
 public class MailingAddressEntity implements MailingAddress {
 
+  @Id
+  @GeneratedValue
+  private Long id;
+  
+  @Version
+  private Long version;
+  
   @Column(name = "street_address")
   private String streetAddress;
   @Column

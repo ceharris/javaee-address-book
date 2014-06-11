@@ -1,5 +1,7 @@
 package ceh.demo.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,9 @@ import ceh.demo.MailingAddress;
 
 @Entity
 @Table(name = "mailing_address")
-public class MailingAddressEntity implements MailingAddress {
+public class MailingAddressEntity implements MailingAddress, Serializable {
+
+  private static final long serialVersionUID = -2786056502691227688L;
 
   @Id
   @GeneratedValue

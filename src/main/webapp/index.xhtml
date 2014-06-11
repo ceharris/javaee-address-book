@@ -17,6 +17,11 @@
   <h:dataTable var="address" value="#{addressTableBean.addresses}">
   
     <h:column>
+      <f:facet name="header">Id</f:facet>
+      <h:outputLink value="edit/?id=#{address.id}">#{address.id}</h:outputLink>
+    </h:column>
+  
+    <h:column>
       <f:facet name="header">Last Name</f:facet>
       #{address.lastName}
     </h:column>

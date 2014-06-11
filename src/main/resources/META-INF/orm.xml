@@ -12,4 +12,11 @@
     </query>
   </named-query>
   
+  <named-query name="findContactById">
+    <query>
+      select distinct c from ContactEntity c
+      inner join fetch c.mailingAddress
+      where c.id = :id
+    </query>
+  </named-query>
 </entity-mappings>

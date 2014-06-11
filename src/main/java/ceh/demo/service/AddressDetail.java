@@ -2,6 +2,8 @@ package ceh.demo.service;
 
 public interface AddressDetail {
 
+  Object getId();
+  
   String getFirstName();
   
   void setFirstName(String firstName);

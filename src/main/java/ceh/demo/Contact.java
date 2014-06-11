@@ -1,6 +1,8 @@
 package ceh.demo;
 
 public interface Contact {
+
+  Object getId();
   
   String getFirstName();
   

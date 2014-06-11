@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+  <title>Edit Address</title>
+</h:head>
+
+<h:body>
+  <f:metadata>
+	  <f:viewParam name="id" value="#{editAddressFormBean.id}"/>
+	  <f:viewAction action="#{editAddressFormBean.findAddress}"/>
+  </f:metadata>
+  <h1>Edit Address</h1>
+  <h:form>
+    <p>
+      <h:outputLabel>First Name:</h:outputLabel>
+      <h:inputText value="#{editAddressFormBean.address.firstName}"/>
+    </p>
+    <p>
+      <h:outputLabel>Last Name:</h:outputLabel>
+      <h:inputText value="#{editAddressFormBean.address.lastName}"/>
+    </p>
+    <p>
+      <h:outputLabel>Street Address:</h:outputLabel>
+      <h:inputText value="#{editAddressFormBean.address.streetAddress}"/>
+    </p>
+    <p>
+      <h:outputLabel>City:</h:outputLabel>
+      <h:inputText value="#{editAddressFormBean.address.city}"/>
+    </p>
+    <p>
+      <h:outputLabel>State:</h:outputLabel>
+      <h:inputText value="#{editAddressFormBean.address.state}"/>
+    </p>
+    <p>
+      <h:outputLabel>Zip Code:</h:outputLabel>
+      <h:inputText value="#{editAddressFormBean.address.zipCode}"/>
+    </p>
+    <p>
+      <a href="..">Cancel</a>
+      <h:commandButton action="#{editAddressFormBean.save}"
+          value="Save"/>
+    </p>    
+  </h:form>
+</h:body>
+
+</html>

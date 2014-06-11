@@ -1,10 +1,17 @@
 package ceh.demo.service;
 
+import java.io.Serializable;
+
 import ceh.demo.Contact;
 
-public class AddressDetailWrapper implements AddressDetail {
+public class AddressDetailWrapper implements AddressDetail, Serializable {
 
-  private final Contact contact;
+  private static final long serialVersionUID = 4505545774488534775L;
+  
+  private Contact contact;
+
+  public AddressDetailWrapper() {    
+  }
 
   public AddressDetailWrapper(Contact contact) {
     this.contact = contact;
@@ -14,6 +21,15 @@ public class AddressDetailWrapper implements AddressDetail {
     return contact;
   }
   
+  public void setDelegate(Contact contact) {
+    this.contact = contact;
+  }
+  
+  @Override
+  public Object getId() {
+    return contact.getId();
+  }
+
   public String getFirstName() {
     return contact.getFirstName();
   }

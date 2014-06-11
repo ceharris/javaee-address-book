@@ -1,5 +1,7 @@
 package ceh.demo.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +20,9 @@ import ceh.demo.MailingAddress;
 
 @Entity
 @Table(name = "contact")
-public class ContactEntity implements Contact {
+public class ContactEntity implements Contact, Serializable {
+
+  private static final long serialVersionUID = 6256864349725491496L;
 
   @Id
   @GeneratedValue
@@ -33,13 +37,18 @@ public class ContactEntity implements Contact {
   @Column(name = "last_name", length = 30)
   private String lastName;
   
-  @OneToOne(optional = false, cascade = { CascadeType.PERSIST },
+  @OneToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE },
       fetch = FetchType.LAZY)
   @JoinColumn(name = "mailing_address_id")
   private MailingAddressEntity mailingAddress = new MailingAddressEntity();
   
   @Column
   private String phone;
+  
+  @Override
+  public Object getId() {
+    return id;
+  }
 
   @Override
   public String getFirstName() {

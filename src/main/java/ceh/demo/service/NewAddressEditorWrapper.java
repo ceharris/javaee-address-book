@@ -6,7 +6,8 @@ import javax.inject.Inject;
 import ceh.demo.repository.ContactRepository;
 
 @Dependent
-public class AddressEditorWrapper extends AddressDetailWrapper
+@NewAddress
+public class NewAddressEditorWrapper extends AddressDetailWrapper
     implements AddressEditor {
 
   private static final long serialVersionUID = -3885887209865914639L;
@@ -16,7 +17,7 @@ public class AddressEditorWrapper extends AddressDetailWrapper
   
   @Override
   public void save() {    
-    contactRepository.update(getDelegate());
+    contactRepository.add(getDelegate());
   }
 
 }

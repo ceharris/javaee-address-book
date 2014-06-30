@@ -5,8 +5,8 @@ import javax.ejb.Local;
 @Local
 public interface AddAddressService {
 
-  AddressDetail newAddress();
+  AddressEditor newAddress();
   
-  void saveAddress(AddressDetail address);
+  void saveAddress(AddressEditor address);
   
 }

@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ceh.demo.service.AddAddressService;
-import ceh.demo.service.AddressDetail;
+import ceh.demo.service.AddressEditor;
 
 @Named
 @RequestScoped
@@ -17,9 +17,9 @@ public class AddAddressFormBean {
   @Inject
   private AddAddressService addAddressService;
   
-  private AddressDetail address;
+  private AddressEditor address;
   
-  public AddressDetail getAddress() {
+  public AddressEditor getAddress() {
     return address;
   }
 

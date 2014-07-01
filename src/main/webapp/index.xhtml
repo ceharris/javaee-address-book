@@ -17,8 +17,10 @@
   <h:dataTable var="address" value="#{addressTableBean.addresses}">
   
     <h:column>
-      <f:facet name="header">Id</f:facet>
-      <h:outputLink value="edit/?id=#{address.id}">#{address.id}</h:outputLink>
+      <f:facet name="header">Action</f:facet>
+      <h:outputLink value="edit/?id=#{address.id}">Edit</h:outputLink>
+      <span> </span>
+      <h:outputLink value="remove/?id=#{address.id}">Remove</h:outputLink>
     </h:column>
   
     <h:column>

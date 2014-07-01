@@ -37,7 +37,8 @@ public class ContactEntity implements Contact, Serializable {
   @Column(name = "last_name", length = 30)
   private String lastName;
   
-  @OneToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE },
+  @OneToOne(optional = false, 
+      cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
       fetch = FetchType.LAZY)
   @JoinColumn(name = "mailing_address_id")
   private MailingAddressEntity mailingAddress = new MailingAddressEntity();

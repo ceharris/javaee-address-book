@@ -9,6 +9,8 @@ public interface ContactRepository {
   void add(Contact contact);
 
   void update(Contact contact);
+  
+  void remove(Contact contact);
 
   Collection<Contact> findAll();
   

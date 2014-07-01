@@ -27,6 +27,11 @@ public class JpaContactRepository implements ContactRepository {
   }
 
   @Override
+  public void remove(Contact contact) {
+    entityManager.remove(entityManager.merge(contact));
+  }
+
+  @Override
   public Collection<Contact> findAll() {
     TypedQuery<Contact> query = entityManager.createNamedQuery(
         "findAllContacts", Contact.class);

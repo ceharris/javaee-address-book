@@ -8,7 +8,7 @@ public interface ContactRepository {
 
   void add(Contact contact);
 
-  Contact update(Contact contact);
+  Contact update(Contact contact) throws UpdateConflictException;
   
   void remove(Contact contact);
 

@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -23,7 +24,12 @@ public class JpaContactRepository implements ContactRepository {
 
   @Override
   public Contact update(Contact contact) throws UpdateConflictException {
-    return entityManager.merge(contact);
+    try {
+      return entityManager.merge(contact);
+    }
+    catch (OptimisticLockException ex) {
+      throw new UpdateConflictException(ex);
+    }
   }
 
   @Override

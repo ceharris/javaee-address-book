@@ -17,6 +17,7 @@ import javax.ws.rs.core.UriInfo;
 import ceh.demo.service.resource.AddressResourceCollectionModel;
 import ceh.demo.service.resource.AddressResourceModel;
 import ceh.demo.service.resource.AddressResourceService;
+import ceh.demo.service.resource.ResourceConflictException;
 
 @Path("/addresses")
 public class AddressResourceEndpoint {
@@ -52,9 +53,14 @@ public class AddressResourceEndpoint {
   
   @PUT
   @Path("/{id}")
-  public AddressResourceModel updateAddress(@PathParam("id") Long id,
+  public Response updateAddress(@PathParam("id") Long id,
       AddressResourceModel address) {
-    return service.updateAddress(address);
+    try {
+      return Response.ok(service.updateAddress(address)).build();
+    }
+    catch (ResourceConflictException ex) {
+      return Response.status(Response.Status.CONFLICT).build();
+    }
   }
   
   @DELETE

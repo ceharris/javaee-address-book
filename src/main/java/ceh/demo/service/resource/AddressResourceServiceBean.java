@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import ceh.demo.Contact;
 import ceh.demo.repository.ContactRepository;
+import ceh.demo.repository.UpdateConflictException;
 
 @Stateless
 public class AddressResourceServiceBean implements AddressResourceService {
@@ -46,14 +47,20 @@ public class AddressResourceServiceBean implements AddressResourceService {
 
   @Override
   @Transactional
-  public AddressResourceModel updateAddress(AddressResourceModel address) {
-    Contact contact =
-        contactRepository.update(addressResourceExtractor
-            .extractContact(address));
-    contactRepository.flush();
-    AddressResourceModel updatedAddress =
-        addressResourceFactory.createResource(contact);
-    return updatedAddress;
+  public AddressResourceModel updateAddress(AddressResourceModel address) 
+      throws ResourceConflictException {
+    try {
+      Contact contact =
+          contactRepository.update(addressResourceExtractor
+              .extractContact(address));
+      contactRepository.flush();
+      AddressResourceModel updatedAddress =
+          addressResourceFactory.createResource(contact);
+      return updatedAddress;
+    }
+    catch (UpdateConflictException ex) {
+      throw new ResourceConflictException();
+    }
   }
 
   @Override

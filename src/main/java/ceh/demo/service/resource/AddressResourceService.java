@@ -11,7 +11,8 @@ public interface AddressResourceService {
   
   Object addAddress(AddressResourceModel address);
     
-  AddressResourceModel updateAddress(AddressResourceModel address);
+  AddressResourceModel updateAddress(AddressResourceModel address)
+      throws ResourceConflictException;
   
   void removeAddress(Long id);
   

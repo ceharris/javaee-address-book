@@ -56,6 +56,7 @@ public class AddressResourceEndpoint {
   public Response updateAddress(@PathParam("id") Long id,
       AddressResourceModel address) {
     try {
+      address.id = id;
       return Response.ok(service.updateAddress(address)).build();
     }
     catch (ResourceConflictException ex) {

@@ -14,6 +14,9 @@ public class AddressResourceModel {
   @XmlAttribute
   public Long version;
   
+  @XmlAttribute
+  public String uri;
+  
   @XmlElement
   public String lastName;
   

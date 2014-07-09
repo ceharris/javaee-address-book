@@ -3,12 +3,17 @@ package ceh.demo.service.resource;
 import java.util.Collection;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.ws.rs.core.UriBuilder;
 
 import ceh.demo.Contact;
 
 @ApplicationScoped
 public class AddressResourceFactoryBean implements AddressResourceFactory {
 
+  @Inject
+  private ResourceContextService resourceContextService;
+  
   @Override
   public AddressResourceModel createResource(Contact contact) {
     AddressResourceModel model = new AddressResourceModel();
@@ -28,7 +33,10 @@ public class AddressResourceFactoryBean implements AddressResourceFactory {
       Collection<Contact> contacts) {
     AddressResourceCollectionModel model = new AddressResourceCollectionModel();
     for (Contact contact : contacts) {
-      model.addAddress(createResource(contact));
+      AddressResourceModel address = createResource(contact);
+      address.uri = UriBuilder.fromUri(resourceContextService.getRequestUri())
+          .path("{id}").build(address.id).toASCIIString();
+      model.addAddress(address);
     }
     return model;
   }

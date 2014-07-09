@@ -1,5 +1,9 @@
 package ceh.demo.service.resource;
 
-public interface ResourceContextService {
+import java.net.URI;
 
+public interface ResourceContextService {
+  
+  URI getRequestUri();
+  
 }

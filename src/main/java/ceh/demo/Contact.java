@@ -2,8 +2,10 @@ package ceh.demo;
 
 public interface Contact {
 
-  Object getId();
-  
+  Long getId();
+
+  Long getVersion();
+
   String getFirstName();
   
   void setFirstName(String firstName);

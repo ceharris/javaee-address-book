@@ -8,12 +8,14 @@ public interface ContactRepository {
 
   void add(Contact contact);
 
-  void update(Contact contact);
+  Contact update(Contact contact);
   
   void remove(Contact contact);
 
   Collection<Contact> findAll();
   
   Contact findById(Long id);
+  
+  void flush();
   
 }

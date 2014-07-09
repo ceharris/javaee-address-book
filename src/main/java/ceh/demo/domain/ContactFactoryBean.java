@@ -13,4 +13,12 @@ public class ContactFactoryBean implements ContactFactory {
     return new ContactEntity();
   }
 
+  @Override
+  public Contact newContact(Long id, Long version) {
+    ContactEntity contact = new ContactEntity();
+    contact.setId(id);
+    contact.setVersion(version);
+    return contact;
+  }
+
 }

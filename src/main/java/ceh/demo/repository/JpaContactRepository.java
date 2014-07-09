@@ -22,8 +22,8 @@ public class JpaContactRepository implements ContactRepository {
   }
 
   @Override
-  public void update(Contact contact) {
-    entityManager.merge(contact);
+  public Contact update(Contact contact) throws UpdateConflictException {
+    return entityManager.merge(contact);
   }
 
   @Override
@@ -49,6 +49,11 @@ public class JpaContactRepository implements ContactRepository {
     catch (NoResultException ex) {
       return null;
     }
+  }
+
+  @Override
+  public void flush() {
+    entityManager.flush();
   }
 
 }

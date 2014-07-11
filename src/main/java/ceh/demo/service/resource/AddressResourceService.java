@@ -12,7 +12,7 @@ public interface AddressResourceService {
   Object addAddress(AddressResourceModel address);
     
   AddressResourceModel updateAddress(AddressResourceModel address)
-      throws ResourceConflictException;
+      throws ResourceConflictException, ResourceNotFoundException;
   
   void removeAddress(Long id);
   

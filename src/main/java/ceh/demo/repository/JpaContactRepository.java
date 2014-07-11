@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ceh.demo.Contact;
+import ceh.demo.domain.ContactEntity;
 
 @ApplicationScoped
 public class JpaContactRepository implements ContactRepository {
@@ -25,6 +26,9 @@ public class JpaContactRepository implements ContactRepository {
   @Override
   public Contact update(Contact contact) throws UpdateConflictException {
     try {
+      if (entityManager.find(ContactEntity.class, contact.getId()) == null) {
+        throw new EntityNotFoundException(Contact.class, contact.getId());
+      }
       return entityManager.merge(contact);
     }
     catch (OptimisticLockException ex) {

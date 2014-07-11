@@ -18,13 +18,14 @@ import ceh.demo.service.resource.AddressResourceCollectionModel;
 import ceh.demo.service.resource.AddressResourceModel;
 import ceh.demo.service.resource.AddressResourceService;
 import ceh.demo.service.resource.ResourceConflictException;
+import ceh.demo.service.resource.ResourceNotFoundException;
 
 @Path("/addresses")
 public class AddressResourceEndpoint {
   
   @Inject
   private AddressResourceService service;
-  
+    
   @GET
   @Path("/")
   public AddressResourceCollectionModel getAllAddresses() {
@@ -35,6 +36,8 @@ public class AddressResourceEndpoint {
   @Path("/")
   public Response addAddress(@Context UriInfo uri, 
       AddressResourceModel address) {
+    address.id = null;
+    address.version = null;
     Object id = service.addAddress(address);
     UriBuilder uriBuilder = uri.getBaseUriBuilder();
     URI newUri = uriBuilder.path(uri.getPath()).path("{id}").build(id);
@@ -61,6 +64,9 @@ public class AddressResourceEndpoint {
     }
     catch (ResourceConflictException ex) {
       return Response.status(Response.Status.CONFLICT).build();
+    }
+    catch (ResourceNotFoundException ex) {
+      return Response.status(Response.Status.NOT_FOUND).build();
     }
   }
   
